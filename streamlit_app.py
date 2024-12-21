@@ -73,4 +73,26 @@ if uploaded_file:
     
     st.write(f"### {model_option} Results")
     st.write(f"Mean Squared Error: {mse:.2f}")
-    st.write(f"R-squared: {r2:.
+    st.write(f"R-squared: {r2:.2f}")
+    
+    # Prediction based on user input
+    st.write("### Make a Prediction")
+    
+    user_input = {}
+    for col in numerical_cols:
+        user_input[col] = st.number_input(f"Enter {col}:", value=0.0)
+    
+    for col in categorical_cols:
+        user_input[col] = st.selectbox(f"Select {col}:", ['yes', 'no'])
+    
+    # Convert user input to DataFrame
+    user_df = pd.DataFrame([user_input])
+    
+    if st.button("Predict"):
+        # Ensure preprocessing
+        user_df_transformed = model.named_steps['preprocessor'].transform(user_df)
+        
+        # Make the prediction
+        prediction = model.named_steps['model'].predict(user_df_transformed)
+        st.write(f"### Predicted Price: ₹{prediction[0]:,.2f}")
+
