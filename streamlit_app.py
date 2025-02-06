@@ -72,8 +72,6 @@ if uploaded_file:
     r2 = r2_score(y_test, y_pred)
     
     st.write(f"### {model_option} Results")
-    st.write(f"Mean Squared Error: {mse:.2f}")
-    st.write(f"R-squared: {r2:.2f}")
     
     # Prediction based on user input
     st.write("### Make a Prediction")
