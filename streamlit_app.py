@@ -80,7 +80,7 @@ if uploaded_file:
     
     user_input = {}
     for col in numerical_cols:
-        user_input[col] = st.number_input(f"Enter {col}:", value=0.0)
+        user_input[col] = st.number_input(f"Enter {col}:", value=0)
     
     for col in categorical_cols:
         user_input[col] = st.selectbox(f"Select {col}:", ['yes', 'no'])
